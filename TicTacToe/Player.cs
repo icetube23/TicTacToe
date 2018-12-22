@@ -9,10 +9,11 @@ namespace TicTacToe
     class Player : Game
     {
         bool firstTurn = false;
+        bool easy = false;
 
         public Player()
         {
-            if (0.5 < new Random().NextDouble())
+            if (1.5 < new Random().NextDouble())
             {
                 field[1, 1] = 'O';
                 countO++;
@@ -32,7 +33,11 @@ namespace TicTacToe
 
             Tuple<int, int> move = PossibleVictory('O');
             if (move is null) { move = PossibleVictory('X'); }
-            if (move is null) { move = BestMove(); }
+            if (move is null) { move = easy ? RandomDraw() : BestMove(); }
+            if (field[move.Item1, move.Item2] != ' ')
+            {
+                Console.WriteLine("CountX: " + countX + "\nCountO: " + countO + "\ni: " + move.Item1 + " j: " + move.Item2);
+            }
             base.MakeTurn(move.Item1, move.Item2);
         }
 
@@ -81,6 +86,20 @@ namespace TicTacToe
                     if (field[0, i] == field[1, i] && field[0, i] == symbol)
                     {
                         return new Tuple<int, int>(2, i);
+                    }
+                }
+            }
+
+            if (field[1, 1] == symbol)
+            {
+                for (int i = 0; i < field.GetLength(0); i++)
+                {
+                    for (int j = 0; j < field.GetLength(1); j++)
+                    {
+                        if (field[i, j] == ' ' && field[2 - i, 2 - j] == symbol)
+                        {
+                            return new Tuple<int, int>(i, j);
+                        }
                     }
                 }
             }

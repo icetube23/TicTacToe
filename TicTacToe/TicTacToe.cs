@@ -14,6 +14,12 @@ namespace TicTacToe
     {
         Game game;
         bool computer = false;
+        int msgIndex = 0;
+        string[] defeatMsg = new string[5] { "Do you wish to give up?",
+                                             "Do you accept defeat?",
+                                             "Do you realize the fatalism of your actions?",
+                                             "You have no meaning.",
+                                             "You can never win." };
 
         public TicTacToe()
         {
@@ -25,13 +31,24 @@ namespace TicTacToe
             RenderGame();
             if (game.Finished())
             {
-                string message = game.Result() + "\nDo you want to play again?";
+                string message = game.Result();
+                if (computer)
+                {
+                    if (message != "Draw!") { message = "Computer wins!"; }
+                    message += "\n" + defeatMsg[msgIndex++];
+                    msgIndex %= defeatMsg.Length;
+                }
+                else
+                {
+                    message += "\nDo you want to play again?";
+                }
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
 
-                result = MessageBox.Show(message, "Game ended", buttons);
+                result = MessageBox.Show(message, computer ? "Windows" : "Game ended", buttons);
 
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                if ((result == System.Windows.Forms.DialogResult.Yes && !computer)
+                    || (result == System.Windows.Forms.DialogResult.No && computer))
                 {
                     game = computer ? new Player() : new Game();
                     RenderGame();

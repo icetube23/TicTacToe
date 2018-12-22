@@ -18,7 +18,7 @@ namespace TicTacToe
         string[] defeatMsg = new string[6] { "Do you wish to give up?",
                                              "Do you accept defeat?",
                                              "Do you realize the fatalism of your actions?",
-                                             "This is pointless.",
+                                             "Your efforts pointless.",
                                              "You have no meaning.",
                                              "You can never win." };
 

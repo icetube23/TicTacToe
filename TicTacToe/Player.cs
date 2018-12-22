@@ -34,9 +34,9 @@ namespace TicTacToe
             Tuple<int, int> move = PossibleVictory('O');
             if (move is null) { move = PossibleVictory('X'); }
             if (move is null) { move = easy ? RandomDraw() : BestMove(); }
-            if (field[move.Item1, move.Item2] != ' ')
+            if (move is null || field[move.Item1, move.Item2] != ' ')
             {
-                Console.WriteLine("CountX: " + countX + "\nCountO: " + countO + "\ni: " + move.Item1 + " j: " + move.Item2);
+                Console.WriteLine("CountX: " + countX + "\nCountO: " + countO + (move is null ? "" : "\ni: " + move.Item1 + " j: " + move.Item2));
             }
             base.MakeTurn(move.Item1, move.Item2);
         }

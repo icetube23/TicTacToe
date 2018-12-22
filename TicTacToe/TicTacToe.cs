@@ -15,9 +15,10 @@ namespace TicTacToe
         Game game;
         bool computer = false;
         int msgIndex = 0;
-        string[] defeatMsg = new string[5] { "Do you wish to give up?",
+        string[] defeatMsg = new string[6] { "Do you wish to give up?",
                                              "Do you accept defeat?",
                                              "Do you realize the fatalism of your actions?",
+                                             "This is pointless.",
                                              "You have no meaning.",
                                              "You can never win." };
 

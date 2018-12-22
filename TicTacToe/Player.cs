@@ -13,7 +13,7 @@ namespace TicTacToe
 
         public Player()
         {
-            if (1.5 < new Random().NextDouble())
+            if (0.5 < new Random().NextDouble())
             {
                 field[1, 1] = 'O';
                 countO++;

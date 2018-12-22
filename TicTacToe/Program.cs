@@ -16,7 +16,8 @@ namespace TicTacToe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new TicTacToe());
+            Game game = new Game();
         }
     }
 }
